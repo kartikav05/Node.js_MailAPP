@@ -14,7 +14,7 @@ The dotenv library is used to load environment variables from a .env file. It al
 
 ##  Areas where code can be improved:
 
-* This code does not have any error handling mechanisms.The error may occur during API requests or while sending emails.I think we can impliment error handling mechanism so that it can provide proper feedback in case of any errors and also prevent from app crashing.
+* This code does not have any error handling mechanisms.The error may occur during API requests or while sending emails.I think we can implement  error handling mechanism so that it can provide proper feedback in case of any errors and also prevent from app crashing.
 
 * This code could be divided into smaller functions or modules to improve code readability and maintainability. Separating the functionality into reusable functions can make the code more organized and easier to test and debug.
 
