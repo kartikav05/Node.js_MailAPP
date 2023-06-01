@@ -31,7 +31,6 @@ const transporter = nodemailer.createTransport({           // Configure the Node
 });
 
 
-
 async function checkEmails() {                                                   // Function to check for new emails
   const gmail = google.gmail({ version: 'v1', auth: oauth2Client });
   const res = await gmail.users.messages.list({ userId: 'me', q: 'is:inbox' });   //Finding list of messages in inbox
@@ -47,9 +46,9 @@ async function checkEmails() {                                                  
         header => header.name.toLowerCase() === 'from'
       ).value;
       const subject = 'Re: ' + messageData.data.payload.headers.find(
-        header => header.name.toLowerCase() === 'subject'
+        header => header.name.toLowerCase() === 'subject'                       //Extracting subject from header
       ).value;
-      const body = 'Hello I got your email. Am on vacation will get back to you soon :) .';
+      const body = 'Hello I got your email. Am on vacation will get back to you soon :) .';   //Text to be sent in mail
       await sendEmail(email, subject, body);                                       //Sending email
       await labelAndMoveEmail(gmail, message.id, 'Label_4');             //Label_4 is the labelId which is already created with google API with labelname MailApp
     }
