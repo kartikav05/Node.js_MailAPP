@@ -17,7 +17,8 @@ const oauth2Client = new google.auth.OAuth2(
 oauth2Client.setCredentials({ refresh_token: REFRESH_TOKEN });
 
 
-const transporter = nodemailer.createTransport({           // Nodemailer configuration 
+
+const transporter = nodemailer.createTransport({           // Configure the NodeMailer
   service: 'gmail',
   auth: {
     type: 'OAuth2',
@@ -28,6 +29,7 @@ const transporter = nodemailer.createTransport({           // Nodemailer configu
     accessToken: oauth2Client.getAccessToken(),
   },
 });
+
 
 
 async function checkEmails() {                                                   // Function to check for new emails
@@ -48,13 +50,13 @@ async function checkEmails() {                                                  
         header => header.name.toLowerCase() === 'subject'
       ).value;
       const body = 'Hello I got your email. Am on vacation will get back to you soon :) .';
-
       await sendEmail(email, subject, body);                                       //Sending email
-      await labelAndMoveEmail(gmail, message.id, 'Label_4');                       //Label_4 is the labelId which is 
-                                                                                   //already created with labelname MailApp
+      await labelAndMoveEmail(gmail, message.id, 'Label_4');             //Label_4 is the labelId which is already created with google API with labelname MailApp
     }
   }
 }
+
+
 
 
 async function sendEmail(email, subject, body) {                       // Function to send an email
@@ -67,6 +69,8 @@ async function sendEmail(email, subject, body) {                       // Functi
 
   await transporter.sendMail(mailOptions);
 }
+
+
 async function labelAndMoveEmail(gmail, messageId, labelId) {           // Function to label and move an email
   await gmail.users.messages.modify({
     userId: 'me',
@@ -74,8 +78,11 @@ async function labelAndMoveEmail(gmail, messageId, labelId) {           // Funct
     resource: { addLabelIds: [labelId], removeLabelIds: ['INBOX'] },
   });
 }
-function getRandomInterval() {                                            // Function to generate random interval between 45 and 120 seconds
+
+
+
+function RandomInterval() {                                            // Function to generate random interval between 45 and 120 seconds
   return Math.floor(Math.random()*(120 - 45 + 1) + 45) * 1000;
 }
 
-setInterval(checkEmails, getRandomInterval());                             // Checking Emails in random interval of time
+setInterval(checkEmails, RandomInterval());                            // Checking Emails in random interval of time
