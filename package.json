@@ -1,0 +1,16 @@
+{
+  "name": "node_gmail1",
+  "version": "1.0.0",
+  "description": "Node.js gmail app",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Kartik",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.1.2",
+    "googleapis": "^118.0.0",
+    "nodemailer": "^6.9.3"
+  }
+}
